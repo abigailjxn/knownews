@@ -16,6 +16,10 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(express.static("public"));
 
+
+/////ROUTES/////
+require("./routes/article-api-routes")(app, axios, cheerio);
+
 /////CONNECT TO MONGO DB/////
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/knownewsdb";
 mongoose.connect( MONGODB_URI, {useNewUrlParser: true});
