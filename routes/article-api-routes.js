@@ -38,7 +38,7 @@ module.exports = function (app, axios, cheerio) {
             })
     });
     /////GET ARTICLES IN MONGODB/////
-    app.get("/articles", function (req, res) {
+    app.get("/api/articles", function (req, res) {
         db.Article.find({})
             .then(function (dbArticle) {
                 res.json(dbArticle)
@@ -48,7 +48,7 @@ module.exports = function (app, axios, cheerio) {
             });
     });
 /////GET ARTICLE WITH COMMENTS/////
-    app.get("/articles/:id", function(req, res){
+    app.get("/api/articles/:id", function(req, res){
         db.Article.findOne({_id: req.params.id})
         .populate("comment")
         .then(function(dbArticle){
@@ -60,7 +60,7 @@ module.exports = function (app, axios, cheerio) {
     });
 
     /////POST COMMENT + JOIN TO ARTICLE W/ ID /////
-    app.post("/articles/:id", function(res, req){
+    app.post("/api/articles/:id", function(res, req){
         db.Comment.create(req.body)
         .then(function(dbComment){
             return db.Article.findOneAndUpdate({_id: req.params.id}, {comment: dbComment._id}, {new: true});
