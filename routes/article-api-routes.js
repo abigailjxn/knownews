@@ -3,7 +3,7 @@ const db = require("../models");
 module.exports = function (app, axios, cheerio) {
     /////SCRAPE ROUTE/////
     app.get("/scrape", function (req, res) {
-        axios.get("https://mashable.com/category/tech/")
+        axios.get("https://www.nbcnews.com/asian-america")
             .then(function (response) {
                 const $ = cheerio.load(response.data);
 
@@ -11,7 +11,7 @@ module.exports = function (app, axios, cheerio) {
                     const result = {};
 
                     result.title = $(this)
-                        .children("a")
+                        .find("span")
                         .text();
                     result.link = $(this)
                         .children("a")
@@ -34,7 +34,7 @@ module.exports = function (app, axios, cheerio) {
                         })
 
                 });
-                res.send("scrape complete!");
+                res.send("Scrape complete!");
             })
     });
     /////GET ARTICLES IN MONGODB/////
