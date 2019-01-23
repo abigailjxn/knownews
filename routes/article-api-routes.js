@@ -58,4 +58,18 @@ module.exports = function (app, axios, cheerio) {
             res.json(err);
         });
     });
+
+    /////POST COMMENT + JOIN TO ARTICLE W/ ID /////
+    app.post("/articles/:id", function(res, req){
+        db.Comment.create(req.body)
+        .then(function(dbComment){
+            return db.Article.findOneAndUpdate({_id: req.params.id}, {comment: dbComment._id}, {new: true});
+        })
+        .then(function(dbArticle){
+            res.json(dbArticle)
+        })
+        .catch(function(err){
+            res.json(err)
+        });
+    });
 }
