@@ -17,8 +17,8 @@ app.use(express.json());
 app.use(express.static("public"));
 
 /////CONNECT TO MONGO DB/////
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-mongoose.connect("mongodb");
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/knownewsdb";
+mongoose.connect( MONGODB_URI, {useNewUrlParser: true});
 
 
 /////START SERVER/////
