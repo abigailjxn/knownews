@@ -2,11 +2,11 @@
     <h1 class="uk-position-top-right">AZNAM News</h1>
     <h2 id="getarticles" class="uk-position-top-left"><a class="uk-link-heading" href="#">get articles.</a></h2>
 
-    <section>
+    <section class="uk-section">
         <div>
-            <ul class="uk-list uk-list-large">
+            <ul class="uk-list uk-list-large uk-list-divider">
                 {{#each articleData}}
-                <li>{{title}} - {{link}}</li>
+                <li><a href="{{link}}">{{title}}</a></li>
                 {{/each}}
             </ul>
         </div>
