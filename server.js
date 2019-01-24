@@ -15,7 +15,6 @@ const app = express();
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
 
 /////HANDLEBARS
 app.engine(
@@ -27,8 +26,10 @@ app.engine(
 app.set("view engine", "handlebars");
 
 /////ROUTES/////
-require("./routes/article-api-routes")(app, axios, cheerio);
 require("./routes/htmlRoutes")(app);
+require("./routes/article-api-routes")(app, axios, cheerio);
+app.use(express.static("public"));
+
 
 /////CONNECT TO MONGO DB/////
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/knownewsdb";
