@@ -3,13 +3,34 @@
     <h2 id="getarticles" class="uk-position-top-left"><a class="uk-link-heading" href="#">get articles.</a></h2>
 
     <section class="uk-section">
-        <div>
+        <div class="uk-container">
             <ul class="uk-list uk-list-large uk-list-divider">
                 {{#each articleData}}
-                <li><a href="{{link}}">{{title}}</a></li>
+                <li><a href="{{link}}">{{title}}</a>
+                    <button id="{{_id}}" class="comment-btn uk-button-small uk-button-default">Comment</button>
+                    <ul class="uk-list uk-list-small">
+                        <li></li>
+                    </ul>
+                </li>
                 {{/each}}
             </ul>
         </div>
     </section>
 
 </container>
+
+<div id="comment-modal" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+
+        <form>
+            <div class="uk-margin">
+                <input id="comment-name" class="uk-input uk-form-width-medium uk-form-large" type="text" placeholder="Name">
+            </div>
+            <div class="uk-margin">
+                <textarea id="comment-body" class="uk-textarea" rows="3" placeholder="Leave a comment here!"></textarea>
+            </div>
+            <button id="comment-confirm" class="uk-button uk-button-secondary">OK</button>
+        </form>
+
+    </div>
+</div>
