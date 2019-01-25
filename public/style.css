@@ -1,6 +1,6 @@
-h1, h3 {
+h1, h3, button {
     font-family: 'Oranienbaum', serif;
 }
-h2, p {
+h2, p, body {
     font-family: 'Barlow Condensed', sans-serif;
 }
