@@ -9,6 +9,17 @@ $("#getarticles").on("click", function (event) {
         })
 });
 
+$("#scrape").on("click", function (event) {
+    event.preventDefault();
+    $.ajax({
+        method: "GET",
+        url: "/scrape"
+    })
+        .then(function (dbArticle) {
+            console.log(dbArticle);
+        })
+});
+
 $(".comment-btn").on("click", function (event) {
     event.preventDefault();
     UIkit.modal("#comment-modal").show();
@@ -45,9 +56,10 @@ $(".comment-link").on("click", function (event) {
     })
         .then(function (dbArticle) {
             console.log(dbArticle);
-            const nameText = $("<li>").text(dbArticle.comment.name);
-            const bodyText = $("<li>").text(dbArticle.comment.body);
-            $(".comment-list").append(nameText).append(bodyText);
+            const nameText = $("<li>").text(`Name: ${dbArticle.comment.name}`);
+            const bodyText = $("<li>").text(`Comment: ${dbArticle.comment.body}`);
+            $("ul").find(`[data-commentid='${thisId}']`).append(nameText).append(bodyText);
+            // $(".comment-list").append(commentList);
             // dbArticle.forEach(function (comment) {
             //     const nameText = $("<li>").text(comment.name);
             //     const bodyText = $("<li>").text(comment.body);

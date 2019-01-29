@@ -1,6 +1,6 @@
 <container class="uk-container">
-    <h1 class="uk-position-top-right">AZNAM News</h1>
-    <h2 id="getarticles" class="uk-position-top-left"><a class="uk-link-heading" href="#">get articles.</a></h2>
+    <h1 class="uk-position-top-left">AZNAM News</h1>
+    <h2  class="uk-position-top-left"><a id="getarticles" class="uk-link-heading" href="#">get articles.</a><a id="scrape" class="uk-link-heading" href="#">scrape.</a></h2>
 
     <section class="uk-section">
         <div class="uk-container">
@@ -9,10 +9,7 @@
                 <li><a href="{{link}}">{{title}}</a>
                     <button id="{{_id}}" class="comment-btn uk-button-small uk-button-default">Comment</button>
                     <a data-id="{{_id}}" class="comment-link" href="/api/articles/{{_id}}">View Latest Comments</a>
-                    <ul class="uk-list uk-list-small comment-list">
-                        {{!-- {{#each comment}}
-                        <li>{{name}}: {{body}}</li>
-                        {{/each}} --}}
+                    <ul class="uk-list uk-list-small comment-list" data-commentid="{{_id}}">
                     </ul>
                 </li>
                 {{/each}}
