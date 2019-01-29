@@ -12,6 +12,10 @@ An app that scrapes NBC's Asian America, populates article links and allows the 
 - Mongoose (for querying Mongo)
 - Morgan (route logger)
 
-Deployed at: 
+## Issues
+
+It will only display the most recent comment on the article. I wasn't sure how to populate multiple comments since the value returned through Mongo wasn't an array.
+
+Deployed at: https://knownews.herokuapp.com/
 
    
