@@ -60,7 +60,11 @@ module.exports = function (app, axios, cheerio) {
     });
 
     /////POST COMMENT + JOIN TO ARTICLE W/ ID /////
-    app.post("/api/articles/:id", function(res, req){
+    app.post("/api/articles/:id", function(req, res){
+        // console.log('BODY', req.body);
+        console.log(req.params.id);
+        // console.log('blah!!!')
+
         db.Comment.create(req.body)
         .then(function(dbComment){
             return db.Article.findOneAndUpdate({_id: req.params.id}, {comment: dbComment._id}, {new: true});

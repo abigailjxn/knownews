@@ -9,7 +9,9 @@
                 <li><a href="{{link}}">{{title}}</a>
                     <button id="{{_id}}" class="comment-btn uk-button-small uk-button-default">Comment</button>
                     <ul class="uk-list uk-list-small">
-                        <li></li>
+                        {{#each comment}}
+                        <li>{{name}}: {{body}}</li>
+                        {{/each}}
                     </ul>
                 </li>
                 {{/each}}
@@ -22,14 +24,15 @@
 <div id="comment-modal" class="uk-flex-top" uk-modal>
     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
 
-        <form>
+        <form action="/submit" method="post" class="comment-form">
             <div class="uk-margin">
                 <input id="comment-name" class="uk-input uk-form-width-medium uk-form-large" type="text" placeholder="Name">
             </div>
             <div class="uk-margin">
                 <textarea id="comment-body" class="uk-textarea" rows="3" placeholder="Leave a comment here!"></textarea>
             </div>
-            <button id="comment-confirm" class="uk-button uk-button-secondary">OK</button>
+            <input type="submit" id="comment-confirm" class="uk-button uk-button-secondary">
+            {{!-- OK</button> --}}
         </form>
 
     </div>
