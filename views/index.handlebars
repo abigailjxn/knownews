@@ -8,10 +8,11 @@
                 {{#each articleData}}
                 <li><a href="{{link}}">{{title}}</a>
                     <button id="{{_id}}" class="comment-btn uk-button-small uk-button-default">Comment</button>
-                    <ul class="uk-list uk-list-small">
-                        {{#each comment}}
+                    <a data-id="{{_id}}" class="comment-link" href="/api/articles/{{_id}}">View Latest Comments</a>
+                    <ul class="uk-list uk-list-small comment-list">
+                        {{!-- {{#each comment}}
                         <li>{{name}}: {{body}}</li>
-                        {{/each}}
+                        {{/each}} --}}
                     </ul>
                 </li>
                 {{/each}}

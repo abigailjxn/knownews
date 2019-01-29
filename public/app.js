@@ -1,20 +1,20 @@
-$("#getarticles").on("click", function(event){
+$("#getarticles").on("click", function (event) {
     event.preventDefault();
-   $.ajax({
-       method: "GET",
-       url: "/api/articles"
-   })
-   .then(function(dbArticle){
-       console.log(dbArticle);
-   })
+    $.ajax({
+        method: "GET",
+        url: "/api/articles"
+    })
+        .then(function (dbArticle) {
+            console.log(dbArticle);
+        })
 });
 
-$(".comment-btn").on("click", function(event){
+$(".comment-btn").on("click", function (event) {
     event.preventDefault();
     UIkit.modal("#comment-modal").show();
     const thisId = $(this).attr("id");
 
-    $(".comment-form").on("submit", function(event){
+    $(".comment-form").on("submit", function (event) {
         event.preventDefault();
         const commentInfo = {
             name: $("#comment-name").val().trim(),
@@ -28,33 +28,31 @@ $(".comment-btn").on("click", function(event){
             url: "/api/articles/" + thisId,
             data: commentInfo
         })
-        .then(function(data){
-            console.log(data);
-            $("#comment-confirm").on("click", function(event){
-                event.preventDefault();
-                UIkit.modal("#comment-modal").hide();
-                $.ajax({
-                    method: "GET",
-                    url: "/api/articles" + thisId
-                })
-                .then(function(dbArticle){
-                    console.log(dbArticle);
-                })
-            })
-        });
+            .then(function (data) {
+                console.log(data);
+
+            });
     });
 });
 
 
-// $("#comment-confirm").on("click", function(event){
-//     event.preventDefault();
-//     UIkit.modal("#comment-modal").hide();
-//     $.ajax({
-//         method: "GET",
-//         url: "/api/articles" + thisId
-//     })
-//     .then(function(dbArticle){
-//         console.log(dbArticle);
-//     })
-// })
+$(".comment-link").on("click", function (event) {
+    event.preventDefault();
+    let thisId = $(this).data("id");
+    $.ajax({
+        method: "GET",
+        url: "/api/articles/" + thisId
+    })
+        .then(function (dbArticle) {
+            console.log(dbArticle);
+            const nameText = $("<li>").text(dbArticle.comment.name);
+            const bodyText = $("<li>").text(dbArticle.comment.body);
+            $(".comment-list").append(nameText).append(bodyText);
+            // dbArticle.forEach(function (comment) {
+            //     const nameText = $("<li>").text(comment.name);
+            //     const bodyText = $("<li>").text(comment.body);
+            //     $(".comment-list").append(nameText).append(bodyText);
+            // })
+        })
+})
 
